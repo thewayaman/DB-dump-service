@@ -1,0 +1,44 @@
+version: '3.4'
+name: 'dump'
+services:
+  # grafana:
+  #   image: grafana/grafana-enterprise
+  #   container_name: grafana
+  #   ports:
+  #     - 3000:3000
+  #   restart: unless-stopped
+  #   environment:
+  #     - GF_SECURITY_ADMIN_USER=admin
+  #     - GF_SECURITY_ADMIN_PASSWORD=admin
+  #   volumes:
+  #     - ./grafana:/home/grafana/provisioning/datasources
+  timescale_db:
+    image: timescale/timescaledb-ha:pg14-latest
+    user: 'root'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=bbking
+    restart: always
+    volumes:
+      - ./timescale_db:/home/postgres/pgdata/data/
+    ports:
+      - 5432:5432
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    user: root
+    # command: bash -c "sudo chmod -R 777 ~/.laradock/data/pgadmin"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: bbking
+    ports:
+      - "5050:80"
+    volumes:
+      - ./pg-admin:/var/lib/pgadmin4/storage
+volumes:
+  timescale_db:
+  # pg-admin:
+  # grafana:
+
+

@@ -1,0 +1,19 @@
+# version: '3.4'
+
+# services:
+#   timescale:
+#     image: timescale/timescaledb-ha:pg14-latest
+#     environment:
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_PASSWORD=bbking
+#       # - POSTGRES_DB=gitea
+#     command: sh -c "yarn install && yarn start"
+#     restart: always
+#     volumes:
+#       - timescale_db:/home/timescaledb/data
+#     ports:
+#       - 5432:5432
+# volumes:
+#   timescale_db:
+
+
